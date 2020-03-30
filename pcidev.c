@@ -30,7 +30,7 @@ enum pci_bartype {
 	TYPE_UNKNOWN
 };
 
-int pci_bar_nuber_from_offset(int offset)
+int pci_bar_number_from_offset(int offset)
 {
 	switch (offset) {
 		case PCI_BASE_ADDRESS_0:
@@ -63,7 +63,7 @@ uintptr_t pcidev_readbar(struct pci_dev *dev, int bar)
 
 	headertype = pci_read_byte(dev, PCI_HEADER_TYPE) & 0x7f;
 	msg_pspew("PCI header type 0x%02x\n", headertype);
-	bar_number = pci_bar_nuber_from_offset(bar);
+	bar_number = pci_bar_number_from_offset(bar);
 
 	if (PCI_LIB_VERSION >= 0x030500 && bar_number > -1) {
 		addr = dev->base_addr[bar_number];
